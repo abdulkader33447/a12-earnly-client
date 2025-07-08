@@ -26,18 +26,18 @@ const Navbar = () => {
   );
   return (
     <div className="">
-      <div className="navbar bg-base-100 navbar-sticky shadow-sm  ">
-        <div className="navbar lg:w-8/12 md:w-9/12 w-11/12 mx-auto">
+      <div className="navbar bg-base-100 navbar-sticky shadow-sm  px-0">
+        <div className="navbar lg:w-8/12 md:w-9/12 w-11/12 mx-auto  px-0">
           <div className="navbar-start">
             <div className="dropdown">
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost lg:hidden"
+                className="mr-2 lg:hidden"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
+                  className="h-8 w-8"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -59,7 +59,7 @@ const Navbar = () => {
               </ul>
             </div>
             <Link to="/" className=" text-xl  ">
-              <img src={logo} alt="logo" className="size-13 " />
+              <img src={logo} alt="logo" className="sm:size-13 size-11" />
             </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
