@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div>
+    <div className="lg:w-8/12 md:w-9/12 w-11/12 mx-auto">
       <footer className="footer sm:footer-horizontal bg-base-300 text-base-content p-10">
         <nav>
           <h6 className="footer-title">Services</h6>
