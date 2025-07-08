@@ -30,11 +30,7 @@ const Navbar = () => {
         <div className="navbar lg:w-8/12 md:w-9/12 w-11/12 mx-auto  px-0">
           <div className="navbar-start">
             <div className="dropdown">
-              <div
-                tabIndex={0}
-                role="button"
-                className="mr-2 lg:hidden"
-              >
+              <div tabIndex={0} role="button" className="mr-2 lg:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-8 w-8"
@@ -66,7 +62,9 @@ const Navbar = () => {
             <ul className="menu menu-horizontal px-1">{links}</ul>
           </div>
           <div className="navbar-end">
-            <a className="btn">Button</a>
+            <a className="btn bg-[#fca61b] hover:bg-[#f7a20a] border-none text-white">
+              Button
+            </a>
           </div>
         </div>
       </div>

@@ -19,16 +19,16 @@ const LogIn = () => {
 
         {/* form */}
         <div className="">
-          <motion.div initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 2,
-                scale: { type: "spring", visualDuration: 0.7, bounce: 0 },
-              }} className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <div
-              
-              className="card-body"
-            >
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 2,
+              scale: { type: "spring", visualDuration: 0.7, bounce: 0 },
+            }}
+            className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl"
+          >
+            <div className="card-body">
               <h1 className="text-5xl font-bold">log in</h1>
               <fieldset className="fieldset">
                 <label className="label">Email</label>

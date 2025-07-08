@@ -5,8 +5,8 @@ import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className="">
-      <footer className="footer  lg:w-8/12 md:w-9/12 w-11/12 mx-auto sm:footer-horizontal  sm:p-10 p-2">
+    <div className="bg-[#44434f]">
+      <footer className="footer lg:w-8/12 md:w-9/12 w-11/12 mx-auto sm:footer-horizontal sm:p-10 p-2 text-white">
         <aside>
           <Link to="/">
             <img src={logo} alt="logo" className="size-15" />

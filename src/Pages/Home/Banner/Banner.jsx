@@ -1,4 +1,4 @@
-import React from "react";
+import { motion } from "framer-motion";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import imgOne from "../../../assets/pexels-life-of-pix-8169.jpg";
@@ -27,15 +27,23 @@ const Banner = () => {
   return (
     <div className="bg-[#1ebcec0b]">
       <div className="lg:w-8/12 md:w-10/12 w-11/12 mx-auto lg:py-20 md:py-14 py-10">
-        <div className="pb-8">
+        <motion.div
+          initial={{ opacity: 0, y: -60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 2.5,
+            
+          }}
+          className="pb-8"
+        >
           <h1 className="text-center lg:text-5xl md:text-3xl text-2xl font-semibold text-gray-800">
             Discover Tasks, Earn Coins, Level Up!
           </h1>
-          <p className="sm:w-96 w-11/12 mx-auto text-center mt-2">
+          <p className="sm:w-96 w-11/12 mx-auto text-center mt-2 sm:text-xl">
             Join thousands of workers completing micro tasks and getting
             rewarded instantly
           </p>
-        </div>
+        </motion.div>
 
         {/* Slider */}
         <Carousel
