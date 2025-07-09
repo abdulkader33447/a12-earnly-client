@@ -59,7 +59,7 @@ const Banner = () => {
               <img
                 src={slide.img}
                 alt={slide.title}
-                className="lg:h-[600px] md:h-[400px] h-[250px] w-full object-cover rounded-md"
+                className="lg:h-[600px] md:h-[400px] h-[200px] w-full object-cover rounded-md"
               />
               {/* Overlay */}
               <div
