@@ -3,8 +3,18 @@ import lottieRegister from "../../../assets/lotties/lottieRegister.json";
 import Lottie from "lottie-react";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
 
 const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log("register form submitted", data);
+  };
   return (
     <div className="min-h-[calc(100vh-300px)] lg:w-8/12 md:w-9/12 w-11/12 mx-auto flex flex-col lg:flex-row-reverse py-10 items-center justify-center gap-5">
       {/* lottie */}
@@ -18,26 +28,82 @@ const Register = () => {
 
       {/* form */}
 
-      <motion.div initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 2,
-                scale: { type: "spring", visualDuration: 0.7, bounce: 0 },
-              }} className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          duration: 2,
+          scale: { type: "spring", visualDuration: 0.7, bounce: 0 },
+        }}
+        className="card bg-base-100 w-full max-w-sm shrink-0 shadow-[_0_0_20px_#fca61b42]"
+      >
         <div className="card-body">
           <h1 className="text-5xl font-bold">Register</h1>
-          <fieldset className="fieldset">
-            <label className="label">Email</label>
-            <input type="email" className="input w-full" placeholder="Email" />
-            <label className="label">Password</label>
-            <input
-              type="password"
-              className="input w-full"
-              placeholder="Password"
-            />
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <fieldset className="fieldset">
+              {/* name */}
+              <label className="label">Name</label>
+              <input
+                type="text"
+                className="input w-full"
+                placeholder="Name"
+                {...register("name", { required: true })}
+              />
+              {errors.name?.type === "required" && (
+                <p className="text-red-500">name is required</p>
+              )}
 
-            <button className="btn btn-neutral mt-4">Register</button>
-          </fieldset>
+              <label className="label">SignUp as a</label>
+              <select className="p-2 border border-gray-300 rounded-sm">
+                <option>Buyer</option>
+                <option>Worker</option>
+              </select>
+
+              {/* photo url */}
+              <label className="label">PhotoURL</label>
+              <input
+                type="url"
+                className="input w-full"
+                placeholder="PhotoURL"
+                {...register("photo", { required: true })}
+              />
+              {errors.photo?.type === "required" && (
+                <p className="text-red-500">photo url is required</p>
+              )}
+
+              {/* email */}
+              <label className="label">Email</label>
+              <input
+                type="email"
+                className="input w-full"
+                placeholder="Email"
+                {...register("email", { required: true })}
+              />
+              {errors.email?.type === "required" && (
+                <p className="text-red-500">email is required</p>
+              )}
+
+              {/* password */}
+              <label className="label">Password</label>
+              <input
+                type="password"
+                className="input w-full"
+                placeholder="Password"
+                {...register("password", { required: true, minLength: 6 })}
+              />
+              {errors.password?.type ===
+              <p className="text-red-500">password is required</p>}
+              {errors.password?.type === "minLength" && (
+                <p className="text-red-500">
+                  password must be 6 characters or longer
+                </p>
+              )}
+
+              <button className="btn bg-[#fca61b] hover:bg-[#f7a20a] border-none text-white mt-4">
+                Register
+              </button>
+            </fieldset>
+          </form>
           <p>
             Already have an account? go to{" "}
             <Link className="text-blue-600 underline" to="/login">
