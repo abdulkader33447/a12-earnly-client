@@ -1,19 +1,42 @@
 import React from "react";
 import lottieRegister from "../../../assets/lotties/lottieRegister.json";
 import Lottie from "lottie-react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
+import useAuth from "../../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const { createUser } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from || "/";
+
   const onSubmit = (data) => {
-    console.log("register form submitted", data);
+    createUser(data.email, data.password)
+      // console.log("register form submitted", data);
+      // console.log(createUser);
+      .then((result) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Signed Up successfully!",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+        navigate(from);
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
   return (
     <div className="min-h-[calc(100vh-300px)] lg:w-8/12 md:w-9/12 w-11/12 mx-auto flex flex-col lg:flex-row-reverse py-10 items-center justify-center gap-5">
@@ -53,8 +76,9 @@ const Register = () => {
                 <p className="text-red-500">name is required</p>
               )}
 
+              {/* option */}
               <label className="label">SignUp as a</label>
-              <select className="p-2 border border-gray-300 rounded-sm">
+              <select className="p-[10px] border border-gray-300 rounded-sm">
                 <option>Buyer</option>
                 <option>Worker</option>
               </select>

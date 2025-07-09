@@ -1,19 +1,29 @@
 import React from "react";
 import logo from "../../assets/uh56knr8oel574nn6apb-removebg-preview.png";
 import { Link, NavLink } from "react-router";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
+  // console.log(user);
   const links = (
     <>
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
-      <li>
-        <NavLink to="/login">Login</NavLink>
-      </li>
-      <li>
-        <NavLink to="/register">Register</NavLink>
-      </li>
+      {user ? (
+        <></>
+      ) : (
+        <>
+          {/* <li>
+            <NavLink to="/login">Login</NavLink>
+          </li> */}
+          <li>
+            <NavLink to="/register">Register</NavLink>
+          </li>
+        </>
+      )}
       <li>
         <a
           href="https://github.com/Programming-Hero-Web-Course4/b11a12-client-side-abdulkader33447"
@@ -24,6 +34,22 @@ const Navbar = () => {
       </li>
     </>
   );
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "sign out user",
+          showConfirmButton: false,
+          timer: 2500,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <div className="">
       <div className="navbar bg-base-100 navbar-sticky shadow-sm  px-0">
@@ -62,9 +88,9 @@ const Navbar = () => {
             <ul className="menu menu-horizontal px-1">{links}</ul>
           </div>
           <div className="navbar-end">
-            <a className="btn bg-[#fca61b] hover:bg-[#f7a20a] border-none text-white">
-              Button
-            </a>
+            <button className="btn bg-[#fca61b] hover:bg-[#f7a20a] border-none text-white">
+              {user ? <Link onClick={handleLogOut}>Log Out</Link> : <Link to="/login">Login</Link>}
+            </button>
           </div>
         </div>
       </div>
