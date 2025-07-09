@@ -13,7 +13,11 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       {user ? (
-        <></>
+        <>
+          <li>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+          </li>
+        </>
       ) : (
         <>
           {/* <li>
@@ -89,7 +93,11 @@ const Navbar = () => {
           </div>
           <div className="navbar-end">
             <button className="btn bg-[#fca61b] hover:bg-[#f7a20a] border-none text-white">
-              {user ? <Link onClick={handleLogOut}>Log Out</Link> : <Link to="/login">Login</Link>}
+              {user ? (
+                <Link onClick={handleLogOut}>Log Out</Link>
+              ) : (
+                <Link to="/login">Login</Link>
+              )}
             </button>
           </div>
         </div>
