@@ -39,7 +39,7 @@ const Banner = () => {
           <h1 className="text-center lg:text-5xl md:text-3xl text-2xl font-semibold text-gray-800">
             Discover Tasks, Earn Coins, Level Up!
           </h1>
-          <p className="sm:w-96 w-11/12 mx-auto text-center mt-2 sm:text-xl">
+          <p className="sm:w-[700px] w-11/12 mx-auto text-center mt-2 sm:text-xl">
             Join thousands of workers completing micro tasks and getting
             rewarded instantly
           </p>
