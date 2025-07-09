@@ -3,10 +3,11 @@ import logo from "../../assets/uh56knr8oel574nn6apb-removebg-preview.png";
 import { Link, NavLink } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { FaUser } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  // console.log(user);
+  console.log(user);
   const links = (
     <>
       <li>
@@ -92,13 +93,35 @@ const Navbar = () => {
             <ul className="menu menu-horizontal px-1">{links}</ul>
           </div>
           <div className="navbar-end">
-            <button className="btn bg-[#fca61b] hover:bg-[#f7a20a] border-none text-white">
-              {user ? (
-                <Link onClick={handleLogOut}>Log Out</Link>
-              ) : (
-                <Link to="/login">Login</Link>
-              )}
-            </button>
+            {user ? (
+              <div className="dropdown dropdown-end">
+                <Link>
+                  {user.photoURL ? (
+                    <>
+                      <img src={user.photoURL} alt="user photo" className="size-11 rounded-full"/>
+                    </>
+                  ) : (
+                    <>
+                      <FaUser className="size-9 hover:text-[#fca61b]" />
+                    </>
+                  )}
+                </Link>
+                <ul tabIndex={0} className="dropdown-content menu bg-base-100 z-[1] rounded-box w-30 p-2">
+                  <li>
+                    <Link onClick={handleLogOut} className="btn shadow-none hover:bg-[#fca61b] hover:text-white">
+                      Log Out
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                className="btn shadow-none bg-[#fca61b] text-white"
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </div>
