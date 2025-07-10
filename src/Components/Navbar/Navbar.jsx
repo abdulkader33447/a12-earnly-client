@@ -97,9 +97,9 @@ const Navbar = () => {
               <div className="dropdown dropdown-end">
                 <Link>
                   {user.photoURL ? (
-                    <>
+                    <span className="tooltip tooltip-bottom" data-tip={user?.displayName}>
                       <img src={user.photoURL} alt="user photo" className="size-11 rounded-full"/>
-                    </>
+                    </span>
                   ) : (
                     <>
                       <FaUser className="size-9 hover:text-[#fca61b]" />

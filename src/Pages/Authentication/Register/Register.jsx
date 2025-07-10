@@ -20,6 +20,7 @@ const Register = () => {
   const from = location.state?.from || "/";
 
   const onSubmit = (data) => {
+    console.log("form submitteddddd", data);
     createUser(data.email, data.password)
       // console.log("register form submitted", data);
       // console.log(createUser);
@@ -76,12 +77,21 @@ const Register = () => {
                 <p className="text-red-500">name is required</p>
               )}
 
-              {/* option */}
+              {/* category */}
               <label className="label">SignUp as a</label>
-              <select className="p-[10px] border border-gray-300 rounded-sm">
-                <option>Buyer</option>
-                <option>Worker</option>
+              <select
+                {...register("category", { required: true })}
+                className="p-[10px] border border-gray-300 rounded-sm"
+              >
+                <option value="" disabled selected>
+                  Select
+                </option>
+                <option value="Buyer">Buyer</option>
+                <option value="Worker">Worker</option>
               </select>
+              {errors.category?.type === "required" && (
+                <p className="text-red-500">category required</p>
+              )}
 
               {/* photo url */}
               <label className="label">PhotoURL</label>
@@ -101,10 +111,19 @@ const Register = () => {
                 type="email"
                 className="input w-full"
                 placeholder="Email"
-                {...register("email", { required: true })}
+                {...register("email", {
+                  required: true,
+                  pattern: {
+                    value: /^[^\s@]+@gmail\.com$/,
+                    message: "Only 'gmail' addresses are allowed",
+                  },
+                })}
               />
               {errors.email?.type === "required" && (
                 <p className="text-red-500">email is required</p>
+              )}
+              {errors.email?.type === "pattern" && (
+                <p className="text-red-500">{errors.email.message}</p>
               )}
 
               {/* password */}
@@ -113,14 +132,26 @@ const Register = () => {
                 type="password"
                 className="input w-full"
                 placeholder="Password"
-                {...register("password", { required: true, minLength: 6 })}
+                {...register("password", {
+                  required: true,
+                  minLength: 6,
+                  pattern: {
+                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/,
+                    message:
+                      "Password must have at least 6 characters including uppercase, lowercase, and a number",
+                  },
+                })}
               />
-              {errors.password?.type ===
-              <p className="text-red-500">password is required</p>}
+              {errors.password?.type === "required" && (
+                <p className="text-red-500">password is required</p>
+              )}
               {errors.password?.type === "minLength" && (
                 <p className="text-red-500">
                   password must be 6 characters or longer
                 </p>
+              )}
+              {errors.password?.type === "pattern" && (
+                <p className="text-red-500">{errors.password.message}</p>
               )}
 
               <button className="btn bg-[#fca61b] hover:bg-[#f7a20a] border-none text-white mt-4">

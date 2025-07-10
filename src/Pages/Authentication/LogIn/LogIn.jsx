@@ -61,7 +61,7 @@ const LogIn = () => {
               duration: 2,
               scale: { type: "spring", visualDuration: 0.7, bounce: 0 },
             }}
-            className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl"
+            className="card bg-base-100 w-full max-w-sm shrink-0 shadow-[_0_0_20px_#fca61b42]"
           >
             <div className="card-body">
               <h1 className="text-5xl font-bold">log in</h1>
@@ -98,7 +98,7 @@ const LogIn = () => {
                   </button>
                 </fieldset>
               </form>
-                  <SocialLogin/>
+              <SocialLogin />
               <p>
                 Don't have an account? go to{" "}
                 <Link className="text-blue-600 underline" to="/register">
