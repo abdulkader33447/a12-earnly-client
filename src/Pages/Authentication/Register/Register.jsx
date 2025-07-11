@@ -97,8 +97,8 @@ const Register = () => {
                 <option value="" disabled selected>
                   Select
                 </option>
-                <option value="Buyer">Buyer</option>
-                <option value="Worker">Worker</option>
+                <option value="buyer">buyer</option>
+                <option value="worker">worker</option>
               </select>
               {errors.category?.type === "required" && (
                 <p className="text-red-500">category required</p>
