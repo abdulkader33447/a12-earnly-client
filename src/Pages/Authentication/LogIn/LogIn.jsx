@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const LogIn = () => {
   const { logIn } = useAuth();
@@ -20,6 +21,8 @@ const LogIn = () => {
     handleSubmit,
   } = useForm();
 
+  const axiosSecure = useAxiosSecure()
+
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from || "/dashboard";
@@ -27,6 +30,13 @@ const LogIn = () => {
   const onSubmit = (data) => {
     console.log("log form submitted");
     logIn(data.email, data.password)
+    const userInfo = {
+          name: data.name,
+          email: data.email,
+          category: data.category,
+          lastLogin: new Date(),
+        };
+        axiosSecure.post("/users",userInfo)
       .then((result) => {
         Swal.fire({
           position: "top-end",
@@ -35,6 +45,7 @@ const LogIn = () => {
           showConfirmButton: false,
           timer: 3000,
         });
+        
         navigate(from);
         console.log(result);
       })

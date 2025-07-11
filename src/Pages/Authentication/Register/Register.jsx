@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const Register = () => {
   const { createUser } = useAuth();
@@ -16,6 +17,7 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const axiosSecure = useAxiosSecure();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -27,6 +29,13 @@ const Register = () => {
       // console.log("register form submitted", data);
       // console.log(createUser);
       .then((result) => {
+        const userInfo = {
+          name: data.name,
+          email: data.email,
+          category: data.category,
+          createdAt: new Date(),
+        };
+        axiosSecure.post("/users", userInfo);
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -145,7 +154,16 @@ const Register = () => {
                     },
                   })}
                 />
-                <span onClick={()=>setShowPassword(!showPassword)} className="absolute top-[12px] right-3 cursor-pointer">{showPassword ? <FaEyeSlash className="size-4" /> : <FaEye className="size-4" />}</span>
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute top-[12px] right-3 cursor-pointer"
+                >
+                  {showPassword ? (
+                    <FaEyeSlash className="size-4" />
+                  ) : (
+                    <FaEye className="size-4" />
+                  )}
+                </span>
               </div>
               {errors.password?.type === "required" && (
                 <p className="text-red-500">password is required</p>
