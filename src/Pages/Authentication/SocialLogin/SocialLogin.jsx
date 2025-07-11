@@ -8,7 +8,7 @@ const SocialLogin = () => {
 
   const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from || "/";
+    const from = location.state?.from || "/dashboard";
 
   const handleGoogleLogIn = () => {
     googleLogin()

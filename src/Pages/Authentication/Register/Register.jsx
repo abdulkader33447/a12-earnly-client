@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import lottieRegister from "../../../assets/lotties/lottieRegister.json";
 import Lottie from "lottie-react";
 import { Link, useLocation, useNavigate } from "react-router";
@@ -6,9 +6,11 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   const { createUser } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -128,20 +130,23 @@ const Register = () => {
 
               {/* password */}
               <label className="label">Password</label>
-              <input
-                type="password"
-                className="input w-full"
-                placeholder="Password"
-                {...register("password", {
-                  required: true,
-                  minLength: 6,
-                  pattern: {
-                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/,
-                    message:
-                      "Password must have at least 6 characters including uppercase, lowercase, and a number",
-                  },
-                })}
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className="input w-full"
+                  placeholder="Password"
+                  {...register("password", {
+                    required: true,
+                    minLength: 6,
+                    pattern: {
+                      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/,
+                      message:
+                        "Password must have at least 6 characters including uppercase, lowercase, and a number",
+                    },
+                  })}
+                />
+                <span onClick={()=>setShowPassword(!showPassword)} className="absolute top-[12px] right-3 cursor-pointer">{showPassword ? <FaEyeSlash className="size-4" /> : <FaEye className="size-4" />}</span>
+              </div>
               {errors.password?.type === "required" && (
                 <p className="text-red-500">password is required</p>
               )}

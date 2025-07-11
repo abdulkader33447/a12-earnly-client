@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import lottieLog from "../../../assets/lotties/lottiLogin.json";
 import Lottie from "lottie-react";
 import { Link, useLocation, useNavigate } from "react-router";
@@ -7,9 +7,12 @@ import useAuth from "../../../Hooks/useAuth";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LogIn = () => {
   const { logIn } = useAuth();
+  const [logInError, setLogInError] = useState();
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -19,7 +22,7 @@ const LogIn = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from || "/";
+  const from = location.state?.from || "/dashboard";
 
   const onSubmit = (data) => {
     console.log("log form submitted");
@@ -37,6 +40,7 @@ const LogIn = () => {
       })
       .catch((error) => {
         console.error(error);
+        setLogInError("incorrect email or password");
       });
   };
 
@@ -81,12 +85,20 @@ const LogIn = () => {
 
                   {/* password */}
                   <label className="label">Password</label>
-                  <input
-                    type="password"
-                    className="input w-full"
-                    placeholder="Password"
-                    {...register("password", { required: true })}
-                  />
+                  <div className="relative">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      className="input w-full"
+                      placeholder="Password"
+                      {...register("password", { required: true })}
+                    />
+                    <span
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute top-[12px] right-3 cursor-pointer"
+                    >
+                      {showPassword ? <FaEyeSlash className="size-4"/> : <FaEye className="size-4" />}
+                    </span>
+                  </div>
                   {errors.password?.type === "required" && (
                     <p className="text-red-500">password is required</p>
                   )}
@@ -96,6 +108,7 @@ const LogIn = () => {
                   <button className="btn shadow-none bg-[#fca61b] hover:bg-[#f7a20a] text-white mt-4">
                     Login
                   </button>
+                  <p className="text-red-500">{logInError}</p>
                 </fieldset>
               </form>
               <SocialLogin />
