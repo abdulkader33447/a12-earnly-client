@@ -13,8 +13,12 @@ import {
   FaUsers,
   FaWallet,
 } from "react-icons/fa";
+import useUserCategory from "../Hooks/useUserCategory";
 
 const DashboardLayout = () => {
+  const { category, categoryLoading } = useUserCategory();
+  // console.log("user category is:",category)
+
   return (
     <div>
       <Navbar />
@@ -64,95 +68,106 @@ const DashboardLayout = () => {
             </li>
 
             {/*-------------- worker links --------------*/}
-            <li>
-              <NavLink
-                to="/dashboard/tasks"
-                className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
-              >
-                <FaTasks className="inline-block mr-2" /> Tasks
-              </NavLink>
-            </li>
-            {/* My Submissions */}
-            <li>
-              <NavLink
-                to="/dashboard/submissions"
-                className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
-              >
-                <FaCheckCircle className="inline-block mr-2" /> My Submissions
-              </NavLink>
-            </li>
+            {!categoryLoading && category === "worker" && (
+              <>
+                <li>
+                  <NavLink
+                    to="/dashboard/taskList"
+                    className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
+                  >
+                    <FaTasks className="inline-block mr-2" /> Task List
+                  </NavLink>
+                </li>
+                {/* My Submissions */}
+                <li>
+                  <NavLink
+                    to="/dashboard/mySubmissions"
+                    className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
+                  >
+                    <FaCheckCircle className="inline-block mr-2" /> My
+                    Submissions
+                  </NavLink>
+                </li>
 
-            {/* Withdrawals */}
-            <li>
-              <NavLink
-                to="/dashboard/withdrawals"
-                className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
-              >
-                <FaWallet className="inline-block mr-2" /> Withdrawals
-              </NavLink>
-            </li>
+                {/* Withdrawals */}
+                <li>
+                  <NavLink
+                    to="/dashboard/withdrawals"
+                    className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
+                  >
+                    <FaWallet className="inline-block mr-2" /> Withdrawals
+                  </NavLink>
+                </li>
+              </>
+            )}
 
             {/*---------buyer links-------------  */}
-            {/* Add New Tasks */}
-            <li>
-              <NavLink
-                to="/dashboard/add-task"
-                className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
-              >
-                <FaPlus className="inline-block mr-2" /> Add New Task
-              </NavLink>
-            </li>
-
-            {/* My Tasks */}
-            <li>
-              <NavLink
-                to="/dashboard/my-tasks"
-                className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
-              >
-                <FaTasks className="inline-block mr-2" /> My Tasks
-              </NavLink>
-            </li>
-
-            {/* Purchase Coin */}
-            <li>
-              <NavLink
-                to="/dashboard/purchase-coin"
-                className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
-              >
-                <FaCoins className="inline-block mr-2" /> Purchase Coin
-              </NavLink>
-            </li>
-
-            {/* Payment History */}
-            <li>
-              <NavLink
-                to="/dashboard/payment-history"
-                className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
-              >
-                <FaHistory className="inline-block mr-2" /> Payment History
-              </NavLink>
-            </li>
+            {!categoryLoading && category === "buyer" && (
+              <>
+                {" "}
+                {/* Add New Tasks */}
+                <li>
+                  <NavLink
+                    to="/dashboard/addNewTask"
+                    className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
+                  >
+                    <FaPlus className="inline-block mr-2" /> Add New Task
+                  </NavLink>
+                </li>
+                {/* My Tasks */}
+                <li>
+                  <NavLink
+                    to="/dashboard/myTasks"
+                    className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
+                  >
+                    <FaTasks className="inline-block mr-2" /> My Tasks
+                  </NavLink>
+                </li>
+                {/* Purchase Coin */}
+                <li>
+                  <NavLink
+                    to="/dashboard/purchaseCoin"
+                    className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
+                  >
+                    <FaCoins className="inline-block mr-2" /> Purchase Coin
+                  </NavLink>
+                </li>
+                {/* Payment History */}
+                <li>
+                  <NavLink
+                    to="/dashboard/paymentHistory"
+                    className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
+                  >
+                    <FaHistory className="inline-block mr-2" /> Payment History
+                  </NavLink>
+                </li>
+              </>
+            )}
 
             {/* --------admin links------- */}
-            {/* Manage Users */}
-            <li>
-              <NavLink
-                to="/dashboard/manage-users"
-                className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
-              >
-                <FaUsers className="inline-block mr-2" /> Manage Users
-              </NavLink>
-            </li>
+            {!categoryLoading && category === "admin" && (
+              <>
+                {/* Manage Users */}
+                <li>
+                  <NavLink
+                    to="/dashboard/manageUsers"
+                    className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
+                  >
+                    <FaUsers className="inline-block mr-2" /> Manage Users
+                  </NavLink>
+                </li>
 
-            {/* Manage Tasks */}
-            <li>
-              <NavLink
-                to="/dashboard/manage-tasks"
-                className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
-              >
-                <FaListAlt className="inline-block mr-2" /> Manage Tasks
-              </NavLink>
-            </li>
+                {/* Manage Tasks */}
+                <li>
+                  <NavLink
+                    to="/dashboard/manageTasks"
+                    className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
+                  >
+                    <FaListAlt className="inline-block mr-2" /> Manage Tasks
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
