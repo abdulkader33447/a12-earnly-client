@@ -21,38 +21,75 @@ const LogIn = () => {
     handleSubmit,
   } = useForm();
 
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
 
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from || "/dashboard";
 
-  const onSubmit = (data) => {
-    console.log("log form submitted");
-    logIn(data.email, data.password)
-    const userInfo = {
-          name: data.name,
-          email: data.email,
-          category: data.category,
-          lastLogin: new Date(),
-        };
-        axiosSecure.post("/users",userInfo)
-      .then((result) => {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Sign in successfully!",
-          showConfirmButton: false,
-          timer: 3000,
-        });
-        
-        navigate(from);
-        console.log(result);
-      })
-      .catch((error) => {
-        console.error(error);
-        setLogInError("incorrect email or password");
+  // const onSubmit =async (data) => {
+  //   // console.log("log form submitted");
+  //   logIn(data.email, data.password)
+  //     .then((result) => {
+  //       Swal.fire({
+  //         position: "top-end",
+  //         icon: "success",
+  //         title: "Sign in successfully!",
+  //         showConfirmButton: false,
+  //         timer: 3000,
+  //       });
+  //       const userInfo = {
+  //         email: result.user.email,
+  //         lastLogin: new Date().toLocaleString(),
+  //       };
+  //       await axiosSecure.patch(`/users/lastLogin?email=${userInfo.email}`, {
+  //         lastLogin: userInfo.lastLogin,
+  //       });
+
+  //       navigate(from);
+  //       console.log(result);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //       setLogInError("incorrect email or password");
+  //     });
+  // };
+
+  const onSubmit = async (data) => {
+    try {
+      const result = await logIn(data.email, data.password);
+
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Sign in successfully!",
+        showConfirmButton: false,
+        timer: 3000,
       });
+
+      const userInfo = {
+        email: result.user.email,
+        lastLogin: new Date().toLocaleString("en-US", {
+          timeZone: "Asia/Dhaka",
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        }),
+      };
+
+      await axiosSecure.patch(`/users/lastLogin?email=${userInfo.email}`, {
+        lastLogin: userInfo.lastLogin,
+      });
+
+      navigate(from);
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+      setLogInError("incorrect email or password");
+    }
   };
 
   return (
@@ -107,7 +144,11 @@ const LogIn = () => {
                       onClick={() => setShowPassword(!showPassword)}
                       className="absolute top-[12px] right-3 cursor-pointer"
                     >
-                      {showPassword ? <FaEyeSlash className="size-4"/> : <FaEye className="size-4" />}
+                      {showPassword ? (
+                        <FaEyeSlash className="size-4" />
+                      ) : (
+                        <FaEye className="size-4" />
+                      )}
                     </span>
                   </div>
                   {errors.password?.type === "required" && (
