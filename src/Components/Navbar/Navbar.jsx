@@ -7,7 +7,7 @@ import { FaUser } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  console.log(user);
+  // console.log(user);
   const links = (
     <>
       <li>
@@ -61,7 +61,11 @@ const Navbar = () => {
         <div className="navbar lg:w-8/12 md:w-10/12 w-11/12 mx-auto  px-0">
           <div className="navbar-start">
             <div className="dropdown">
-              <div tabIndex={0} role="button" className="mr-2 lg:hidden">
+              <div
+                tabIndex={0}
+                role="button"
+                className="mr-2 lg:hidden cursor-pointer"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-8 w-8"
@@ -97,18 +101,31 @@ const Navbar = () => {
               <div className="dropdown dropdown-end">
                 <Link>
                   {user.photoURL ? (
-                    <span className="tooltip tooltip-bottom" data-tip={user?.displayName}>
-                      <img src={user.photoURL} alt="user photo" className="size-11 rounded-full"/>
+                    <span
+                      className="tooltip tooltip-bottom"
+                      data-tip={user?.displayName}
+                    >
+                      <img
+                        src={user.photoURL}
+                        alt="user photo"
+                        className="size-11 rounded-full"
+                      />
                     </span>
                   ) : (
                     <>
-                      <FaUser className="size-9 hover:text-[#fca61b]" />
+                      <FaUser className="size-9 hover:text-[#fca61b]"/>
                     </>
                   )}
                 </Link>
-                <ul tabIndex={0} className="dropdown-content menu bg-base-100 z-[1] rounded-box w-30 p-2">
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu bg-base-100 z-[1] rounded-box w-30 p-2"
+                >
                   <li>
-                    <Link onClick={handleLogOut} className="btn shadow-none hover:bg-[#fca61b] hover:text-white">
+                    <Link
+                      onClick={handleLogOut}
+                      className="btn shadow-none hover:bg-[#fca61b] hover:text-white"
+                    >
                       Log Out
                     </Link>
                   </li>

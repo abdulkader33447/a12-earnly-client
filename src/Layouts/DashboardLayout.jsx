@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router";
-import Navbar from "../Components/Navbar/Navbar";
 import Footer from "../Components/Footer/Footer";
 import {
   FaCheckCircle,
@@ -14,6 +13,7 @@ import {
   FaWallet,
 } from "react-icons/fa";
 import useUserCategory from "../Hooks/useUserCategory";
+import DashboardNavbar from "../Components/DashboardNavbar/DashboardNavbar";
 
 const DashboardLayout = () => {
   const { category, categoryLoading } = useUserCategory();
@@ -21,10 +21,10 @@ const DashboardLayout = () => {
 
   return (
     <div>
-      <Navbar />
-      <div className="drawer lg:drawer-open lg:w-8/12 md:w-10/12 w-11/12 mx-auto lg:py-20 md:py-14 py-10">
+      <DashboardNavbar />
+      <div className="drawer lg:drawer-open lg:w-10/12 md:w-10/12 w-11/12 mx-auto lg:py-20 md:py-14 py-10">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col p-5 ">
+        <div className="drawer-content flex flex-col p-2">
           <div className="navbar w-full  lg:hidden">
             <div className="flex-none  lg:hidden">
               <label
@@ -57,7 +57,7 @@ const DashboardLayout = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu text-base-content min-h-full w-60 p-4 bg-gradient-to-t from-blue-100 via-green-100 to-blue-100 rounded-lg">
+          <ul className="menu text-base-content min-h-full w-60 p-4 bg-gradient-to-t from-blue-50 via-green-50 to-blue-50 rounded-lg">
             <li>
               <NavLink
                 to="/dashboard"

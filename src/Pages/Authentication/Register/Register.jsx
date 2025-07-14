@@ -8,6 +8,7 @@ import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
   const { createUser } = useAuth();
@@ -23,33 +24,36 @@ const Register = () => {
   const navigate = useNavigate();
   const from = location.state?.from || "/";
 
-  const onSubmit = (data) => {
-    console.log("form submitteddddd", data);
-    createUser(data.email, data.password)
-      // console.log("register form submitted", data);
-      // console.log(createUser);
-      .then((result) => {
-        const userInfo = {
-          name: data.name,
-          email: data.email,
-          category: data.category,
-          createdAt: new Date(),
-        };
-        axiosSecure.post("/users", userInfo);
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Signed Up successfully!",
-          showConfirmButton: false,
-          timer: 3000,
-        });
-        navigate(from);
-        console.log(result.user);
-      })
-      .catch((error) => {
-        console.error(error);
+  const onSubmit = async (data) => {
+    try {
+      const result = await createUser(data.email, data.password);
+      await updateProfile(result.user, {
+        displayName: data.name,
+        photoURL: data.photoURL,
       });
+
+      const userInfo = {
+        displayName: data.name,
+        email: data.email,
+        photoURL: data.photoURL,
+        category: data.category,
+        createdAt: new Date(),
+      };
+      await axiosSecure.post("/users", userInfo);
+
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Signed Up successfully!",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+      navigate(from);
+    } catch (error) {
+      console.error("Registration error:", error);
+    }
   };
+
   return (
     <div className="min-h-[calc(100vh-300px)] lg:w-8/12 md:w-9/12 w-11/12 mx-auto flex flex-col lg:flex-row-reverse py-10 items-center justify-center gap-5">
       {/* lottie */}
@@ -91,10 +95,11 @@ const Register = () => {
               {/* category */}
               <label className="label">SignUp as a</label>
               <select
+                defaultValue=""
                 {...register("category", { required: true })}
                 className="p-[10px] border border-gray-300 rounded-sm"
               >
-                <option value="" disabled selected>
+                <option value="" disabled>
                   Select
                 </option>
                 <option value="buyer">buyer</option>
@@ -110,9 +115,9 @@ const Register = () => {
                 type="url"
                 className="input w-full"
                 placeholder="PhotoURL"
-                {...register("photo", { required: true })}
+                {...register("photoURL", { required: true })}
               />
-              {errors.photo?.type === "required" && (
+              {errors.photoURL?.type === "required" && (
                 <p className="text-red-500">photo url is required</p>
               )}
 
