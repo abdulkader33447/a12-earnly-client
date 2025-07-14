@@ -41,10 +41,12 @@ const MyTasks = () => {
           if (res.data.success) {
             Swal.fire({
               title: "Deleted!",
-              text: "Your file has been deleted.",
+              text: `Task deleted successfully. Refunded ${
+                res.data.refill
+              } coin${res.data.refill > 1 ? "s" : ""}.`,
               icon: "success",
             });
-            refetch()
+            refetch();
           }
         } catch (error) {
           Swal.fire("Error", "Faild to delete task.", error);
