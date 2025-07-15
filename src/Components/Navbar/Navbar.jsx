@@ -4,10 +4,17 @@ import { Link, NavLink } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { FaUser } from "react-icons/fa";
+import useUserInfo from "../../Hooks/useUserInfo";
+import LoadingSpinner from "../../Pages/LoadingSpinner/LoadingSpinner";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   // console.log(user);
+  const { userInfo, userInfoLoading } = useUserInfo();
+
+  if (userInfoLoading) {
+    return <LoadingSpinner />;
+  }
   const links = (
     <>
       <li>
@@ -84,7 +91,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow justify-center items-center"
               >
                 {links}
               </ul>
@@ -99,24 +106,35 @@ const Navbar = () => {
           <div className="navbar-end">
             {user ? (
               <div className="dropdown dropdown-end">
-                <Link>
-                  {user.photoURL ? (
-                    <span
-                      className="tooltip tooltip-bottom"
-                      data-tip={user?.displayName}
-                    >
-                      <img
-                        src={user.photoURL}
-                        alt="user photo"
-                        className="size-11 rounded-full"
-                      />
+                <div className=" flex items-center justify-center">
+                  <p className="mx-2">
+                    {" "}
+                    coins:{" "}
+                    <span className="text-blue-500 font-semibold">
+                      {userInfo?.coins ?? 0}{" "}
+                      {/**Nullish Coalescing Operator :  যদি userInfo থাকে এবং তার মধ্যে coins প্রপার্টি থাকে, তাহলে সেটা দেখাও।
+                      আর যদি userInfo না থাকে বা coins না থাকে (মানে null/undefined), তাহলে 0 দেখাও।*/}
                     </span>
-                  ) : (
-                    <>
-                      <FaUser className="size-9 hover:text-[#fca61b]"/>
-                    </>
-                  )}
-                </Link>
+                  </p>
+                  <Link>
+                    {user?.photoURL ? (
+                      <span
+                        className="tooltip tooltip-bottom"
+                        data-tip={user?.displayName}
+                      >
+                        <img
+                          src={user?.photoURL}
+                          alt="user photo"
+                          className="size-11 rounded-full"
+                        />
+                      </span>
+                    ) : (
+                      <>
+                        <FaUser className="size-9 hover:text-[#fca61b]" />
+                      </>
+                    )}
+                  </Link>
+                </div>
                 <ul
                   tabIndex={0}
                   className="dropdown-content menu bg-base-100 z-[1] rounded-box w-30 p-2"

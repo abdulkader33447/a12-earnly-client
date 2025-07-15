@@ -4,6 +4,7 @@ import useAuth from "../../Hooks/useAuth";
 import { Link, NavLink } from "react-router";
 import logo from "../../assets/uh56knr8oel574nn6apb-removebg-preview.png";
 import { FaBell, FaUser } from "react-icons/fa";
+import LoadingSpinner from "../../Pages/LoadingSpinner/LoadingSpinner";
 
 const DashboardNavbar = () => {
   const { user } = useAuth();
@@ -16,6 +17,9 @@ const DashboardNavbar = () => {
   //       </li>
   //     </>
   //   );
+  if(userInfoLoading){
+    return <LoadingSpinner/>
+  }
   return (
     <div className="">
       <div className="navbar bg-base-100 navbar-sticky shadow-sm  px-0">

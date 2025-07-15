@@ -19,10 +19,15 @@ const SocialLogin = () => {
       .then(async (result) => {
         const loggedUser = result.user;
 
-        // ✅ Check user exists or not
+        //  Check user exists or not
         try {
           const res = await axiosSecure.get(`/users/check/${loggedUser.email}`);
           const exists = res.data.exists;
+          const existingCategory = res.data.category;
+
+          if (exists && existingCategory) {
+            console.error("⚠️ Warning: Existing user has no category.");
+          }
 
           if (!exists) {
             // new user → category select modal
@@ -32,10 +37,10 @@ const SocialLogin = () => {
             // already exist → go
 
             await axiosSecure.post("/users", {
-              name: loggedUser.displayName,
+              displayName: loggedUser.displayName,
               email: loggedUser.email,
-              photo: loggedUser.photoURL,
-              category: "",
+              photoURL: loggedUser.photoURL,
+              category: existingCategory,
               createdAt: new Date().toLocaleString(),
               lastLogin: new Date().toLocaleString(),
             });
@@ -64,9 +69,9 @@ const SocialLogin = () => {
     }
 
     const userInfo = {
-      name: user.displayName,
+      displayName: user.displayName,
       email: user.email,
-      photo: user.photoURL,
+      photoURL: user.photoURL,
       category: category,
       createdAt: new Date().toLocaleString(),
       lastLogin: new Date().toLocaleString(),

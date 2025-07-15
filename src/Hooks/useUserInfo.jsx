@@ -10,6 +10,7 @@ const useUserInfo = () => {
     data: userInfo = {},
     isLoading: userInfoLoading,
     isError,
+    refetch,
   } = useQuery({
     queryKey: user?.email ? ["userInfo", user?.email] : [],
     enabled: !!user?.email && !loading,
@@ -18,7 +19,7 @@ const useUserInfo = () => {
       return res.data;
     },
   });
-  return { userInfo, userInfoLoading, isError };
+  return { userInfo, userInfoLoading, isError, refetch };
 };
 
 export default useUserInfo;

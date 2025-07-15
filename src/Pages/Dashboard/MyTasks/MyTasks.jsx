@@ -6,6 +6,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import { Link } from "react-router";
 
 const MyTasks = () => {
   const { user } = useAuth();
@@ -144,7 +145,18 @@ const MyTasks = () => {
 
       {/* task table */}
       {tasks.length === 0 ? (
-        <p>to task yet</p>
+        <>
+          <div className="text-center">
+            <h1>
+              Hey,{" "}
+              <span className="text-black font-bold">
+                Mr.{user.displayName}!{" "}
+              </span>{" "}
+              You haven't published any task yet.<br />go to 
+            </h1>
+            <Link to="/dashboard/addNewTask" className="btn btn-outline my-5 hover:bg-[#fca61b] text-[#fca61b] hover:text-white">Add Task</Link>
+          </div>
+        </>
       ) : (
         <div className="overflow-x-auto bg-gradient-to-bl from-blue-100 to-green-100 rounded-xl">
           <table className="table w-full">
