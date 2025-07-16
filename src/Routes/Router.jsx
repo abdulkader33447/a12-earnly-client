@@ -19,6 +19,7 @@ import Withdrawals from "../Pages/Dashboard/Withdrawals/Withdrawals";
 import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
 import ManageTask from "../Pages/Dashboard/ManageTask/ManageTask";
 import AdminRoute from "../Context/PriveteRoutes/AdminRoute";
+import TaskDetail from "../Pages/Dashboard/TaskDetail/TaskDetail";
 
 export const router = createBrowserRouter([
   {
@@ -113,6 +114,14 @@ export const router = createBrowserRouter([
         element: (
           <WorkerRoute>
             <Withdrawals />
+          </WorkerRoute>
+        ),
+      },
+      {
+        path: "taskDetails/:id",
+        element: (
+          <WorkerRoute>
+            <TaskDetail />
           </WorkerRoute>
         ),
       },

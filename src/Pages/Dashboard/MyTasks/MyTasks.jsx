@@ -66,7 +66,13 @@ const MyTasks = () => {
   };
   return (
     <div>
-      <h1 className="sm:text-3xl text-center font-bold my-5">MyTasks</h1>
+      <h1 className="text-center lg:text-5xl md:text-3xl text-2xl font-semibold text-gray-800 mb-3">
+        Manage Your Published Tasks
+      </h1>
+      <p className="sm:w-[550px] w-11/12 mx-auto text-center sm:text-xl mb-10">
+        View, update, or delete the tasks you've published. Keep your
+        assignments up-to-date and organized.
+      </p>
 
       {/* modal */}
       {isModalOpen && selectedTask && (
@@ -146,7 +152,7 @@ const MyTasks = () => {
       {/* task table */}
       {tasks.length === 0 ? (
         <>
-          <div className="text-center">
+          <div className="text-center border border-gray-200 rounded-lg p-5">
             <h1>
               Hey,{" "}
               <span className="text-black font-bold">
@@ -158,7 +164,7 @@ const MyTasks = () => {
             </h1>
             <Link
               to="/dashboard/addNewTask"
-              className="btn btn-outline my-5 hover:bg-[#fca61b] text-[#fca61b] hover:text-white"
+              className="btn btn-outline my-5 hover:bg-[#fca61b] text-[#fca61b] rounded-lg hover:text-white hover:shadow-[0_0_20px_#fca61b] hover:border-none"
             >
               Add Task
             </Link>

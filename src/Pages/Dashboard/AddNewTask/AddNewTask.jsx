@@ -50,6 +50,7 @@ const AddNewTask = () => {
     //create task
     const taskData = {
       ...data,
+      buyerName:user.displayName,
       task_image_url: owrkProf,
       email: user?.email,
       total_cost: totalPayable,

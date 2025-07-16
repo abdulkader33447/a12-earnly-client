@@ -22,61 +22,60 @@ const PaymentHistory = () => {
         });
     }
   }, [user, axiosSecure]);
+
   return (
-    <div className="max-w-6xl mx-auto p-4">
-      <h1 className="sm:text-3xl text-center font-bold my-5">
+    <div>
+      <h1 className="text-xl sm:text-3xl text-center font-bold my-5">
         Payment History
       </h1>
-      <div>
-        {payments.length > 0 ? (
-          <>
-            <div className="overflow-x-auto bg-gradient-to-bl from-blue-100 to-green-100 rounded-xl">
-              <table className="table w-full">
-                <thead className="bg-gray-300">
-                  <tr>
-                    <th>#</th>
-                    <th>Coins</th>
-                    <th>Amount ($)</th>
-                    <th>Method</th>
-                    <th>Transaction ID</th>
-                    <th>Date</th>
+
+      {!payments.length > 0 ? (
+        <div className="text-center border border-gray-200 rounded-lg p-5">
+          <h1>
+            Hey{" "}
+            <span className="text-black font-bold hover:text-gray-400">
+              Mr. {user?.displayName}
+            </span>
+            , you have not purchased any coins yet.
+            <br /> Go to
+          </h1>
+          <Link
+            to="/dashboard/purchaseCoin"
+            className="btn btn-outline my-5 hover:bg-[#fca61b] text-[#fca61b] rounded-lg hover:text-white hover:shadow-[0_0_20px_#fca61b] hover:border-none"
+          >
+            Purchase Coin
+          </Link>
+        </div>
+      ) : (
+        <div className="overflow-x-auto bg-gradient-to-bl from-blue-100 to-green-100 rounded-xl shadow-md">
+          <div className="max-h-[450px] overflow-y-auto">
+            <table className="table w-full text-xs sm:text-sm md:text-base">
+              <thead className="bg-gray-300 text-gray-700">
+                <tr>
+                  <th>#</th>
+                  <th>Coins</th>
+                  <th>Amount ($)</th>
+                  <th>Method</th>
+                  <th>Transaction ID</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {payments.map((payment, index) => (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{payment.coins}</td>
+                    <td>${payment.amount}</td>
+                    <td>{payment.paymentMethod}</td>
+                    <td>{payment.transactionId || "N/A"}</td>
+                    <td>{new Date().toLocaleString()}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {payments.map((payment, index) => (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>{payment.coins}</td>
-                      <td>${payment.amount}</td>
-                      <td>{payment.paymentMethod}</td>
-                      <td>{payment.transactionId || "N/A"}</td>
-                      <td>{payment.paidAt}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="text-center">
-              <h1>
-                Hey {" "}
-                <span className="text-black font-bold">Mr.
-                  {user?.displayName}{" "}
-                </span>
-                You have not purchased any coins yet. <br /> go to
-              </h1>
-              <Link
-                to="/dashboard/purchaseCoin"
-                className="btn btn-outline my-5 hover:bg-[#fca61b] text-[#fca61b] rounded-lg hover:text-white hover:shadow-[0_0_20px_#fca61b] hover:border-none"
-              >
-                Purchase Coin
-              </Link>
-            </div>
-          </>
-        )}
-      </div>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
