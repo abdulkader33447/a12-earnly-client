@@ -150,11 +150,18 @@ const MyTasks = () => {
             <h1>
               Hey,{" "}
               <span className="text-black font-bold">
-                Mr.{user.displayName}!{" "}
+                Mr. {user.displayName}!{" "}
               </span>{" "}
-              You haven't published any task yet.<br />go to 
+              You haven't published any task yet.
+              <br />
+              go to
             </h1>
-            <Link to="/dashboard/addNewTask" className="btn btn-outline my-5 hover:bg-[#fca61b] text-[#fca61b] hover:text-white">Add Task</Link>
+            <Link
+              to="/dashboard/addNewTask"
+              className="btn btn-outline my-5 hover:bg-[#fca61b] text-[#fca61b] hover:text-white"
+            >
+              Add Task
+            </Link>
           </div>
         </>
       ) : (
@@ -176,7 +183,7 @@ const MyTasks = () => {
                   <td>{task.title}</td>
                   <td>{task.submission_info}</td>
                   <td>{task.completion_date}</td>
-                  <td className="space-x-2">
+                  <td className="space-x-2 space-y-2">
                     <button onClick={() => handleUpdate(task)}>
                       <FiEdit className="inline-block mr-2 cursor-pointer size-5 text-blue-600 hover:size-6" />
                     </button>

@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink, Outlet } from "react-router";
 import Footer from "../Components/Footer/Footer";
 import {
@@ -61,7 +60,7 @@ const DashboardLayout = () => {
             <li>
               <NavLink
                 to="/dashboard"
-                className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
+                className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
               >
                 <FaHome className="inline-block mr-2" /> Home
               </NavLink>
@@ -73,7 +72,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/taskList"
-                    className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
+                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
                   >
                     <FaTasks className="inline-block mr-2" /> Task List
                   </NavLink>
@@ -82,7 +81,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/mySubmissions"
-                    className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
+                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
                   >
                     <FaCheckCircle className="inline-block mr-2" /> My
                     Submissions
@@ -93,7 +92,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/withdrawals"
-                    className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
+                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
                   >
                     <FaWallet className="inline-block mr-2" /> Withdrawals
                   </NavLink>
@@ -109,7 +108,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/addNewTask"
-                    className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
+                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
                   >
                     <FaPlus className="inline-block mr-2" /> Add New Task
                   </NavLink>
@@ -118,7 +117,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/myTasks"
-                    className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
+                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
                   >
                     <FaTasks className="inline-block mr-2" /> My Tasks
                   </NavLink>
@@ -127,7 +126,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/purchaseCoin"
-                    className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
+                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
                   >
                     <FaCoins className="inline-block mr-2" /> Purchase Coin
                   </NavLink>
@@ -136,7 +135,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/paymentHistory"
-                    className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
+                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
                   >
                     <FaHistory className="inline-block mr-2" /> Payment History
                   </NavLink>
@@ -151,7 +150,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/manageUsers"
-                    className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
+                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
                   >
                     <FaUsers className="inline-block mr-2" /> Manage Users
                   </NavLink>
@@ -161,7 +160,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/manageTasks"
-                    className="hover:bg-[#CAEB66] hover:shadow-[0_0_20px_#CAEB66]"
+                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
                   >
                     <FaListAlt className="inline-block mr-2" /> Manage Tasks
                   </NavLink>
