@@ -50,7 +50,7 @@ const AddNewTask = () => {
     //create task
     const taskData = {
       ...data,
-      buyerName:user.displayName,
+      buyerName: user.displayName,
       task_image_url: owrkProf,
       email: user?.email,
       total_cost: totalPayable,
@@ -109,7 +109,10 @@ const AddNewTask = () => {
         reach.
       </p>
       <div>
-        <form className=" w-full" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="rounded-lg shadow-[_0_0_10px_#fca61b71] p-5 w-full"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 w-full">
             {/* task title */}
             <fieldset className="fieldset">
@@ -188,7 +191,7 @@ const AddNewTask = () => {
 
             <button
               type="submit"
-              className="btn bg-[#fca61b] hover:bg-[#f7a20a] border-none text-white mt-4 sm:col-span-2 w-full"
+              className="btn bg-[#fca61b] hover:bg-[#f7a20a] border-none hover:border-none text-white mt-4 sm:col-span-2 hover:shadow-[_0_0_15px_#fca61b] w-full"
             >
               Add Task
             </button>

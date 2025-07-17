@@ -1,13 +1,21 @@
 import React from "react";
+import useUserCategory from "../../../Hooks/useUserCategory";
+import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
+import BuyerDashboard from "./BuyerDashboard";
+import WorkerDashboard from "./WorkerDashboard";
+import AdminDashboard from "./AdminDashboard";
 
 const DashboardHome = () => {
-  return (
-    <div className="min-h-[calc(100vh-300px)]">
-      <div className="lg:w-8/12 md:w-10/12 w-11/12 mx-auto lg:py-20 md:py-14 py-10">
-        <h1>DashboardHome</h1>
-      </div>
-    </div>
-  );
+  const { category, categoryLoading } = useUserCategory();
+  if (categoryLoading) {
+    return <LoadingSpinner />;
+  } else if (category === "buyer") {
+    return <BuyerDashboard />;
+  } else if (category === "worker") {
+    return <WorkerDashboard />;
+  } else if (category === "admin") {
+    return <AdminDashboard />;
+  }
 };
 
 export default DashboardHome;
