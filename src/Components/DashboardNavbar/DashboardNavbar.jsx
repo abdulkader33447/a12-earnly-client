@@ -1,24 +1,17 @@
-import React from "react";
 import useUserInfo from "../../Hooks/useUserInfo";
-import useAuth from "../../Hooks/useAuth";
-import { Link, NavLink } from "react-router";
+import { Link } from "react-router";
 import logo from "../../assets/uh56knr8oel574nn6apb-removebg-preview.png";
 import { FaBell, FaUser } from "react-icons/fa";
 import LoadingSpinner from "../../Pages/LoadingSpinner/LoadingSpinner";
 
 const DashboardNavbar = () => {
-  const { user } = useAuth();
+
   const { userInfo, userInfoLoading } = useUserInfo();
 
-  //   const links = (
-  //     <>
-  //       <li>
-  //         <NavLink>Home</NavLink>
-  //       </li>
-  //     </>
-  //   );
-  if(userInfoLoading){
-    return <LoadingSpinner/>
+  // console.log(userInfo.photoURL);
+
+  if (userInfoLoading) {
+    return <LoadingSpinner />;
   }
   return (
     <div className="">
@@ -52,12 +45,14 @@ const DashboardNavbar = () => {
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
               >
                 {/* {links} */}
-                <p>
-                  Available coins :
-                  <span className="text-blue-500 font-semibold mx-2">
-                    {userInfo.coins}
-                  </span>
-                </p>
+                {userInfo.category !== "admin" && (
+                  <p>
+                    Available coins :
+                    <span className="text-blue-500 font-bold mx-2">
+                      {userInfo.coins}
+                    </span>
+                  </p>
+                )}
                 <p>
                   User name :
                   <span className="font-bold mx-3">{userInfo.displayName}</span>
@@ -76,12 +71,14 @@ const DashboardNavbar = () => {
           </div>
           <div className="navbar-end hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
-              <p>
-                Available coins :
-                <span className="text-blue-500 font-bold mx-2">
-                  {userInfo.coins}
-                </span>
-              </p>
+              {userInfo.category !== "admin" && (
+                <p>
+                  Available coins :
+                  <span className="text-blue-500 font-bold mx-2">
+                    {userInfo.coins}
+                  </span>
+                </p>
+              )}
               <p>
                 User name :
                 <span className="font-bold mx-3">{userInfo.displayName}</span>
@@ -95,9 +92,9 @@ const DashboardNavbar = () => {
                 {userInfo.category}
               </span>
             </p>
-            {user?.photoURL ? (
+            {userInfo?.photoURL ? (
               <img
-                src={user?.photoURL}
+                src={userInfo?.photoURL}
                 alt="user photo"
                 className="size-11 rounded-full"
               />

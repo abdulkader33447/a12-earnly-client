@@ -2,6 +2,7 @@ import { NavLink, Outlet } from "react-router";
 import Footer from "../Components/Footer/Footer";
 import {
   FaCheckCircle,
+  FaClipboardCheck,
   FaCoins,
   FaHistory,
   FaHome,
@@ -138,6 +139,16 @@ const DashboardLayout = () => {
                     className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
                   >
                     <FaHistory className="inline-block mr-2" /> Payment History
+                  </NavLink>
+                </li>
+                {/* buyer submission */}
+                <li>
+                  <NavLink
+                    to="/dashboard/taskToReview"
+                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b] rounded px-3 py-2 flex items-center"
+                  >
+                    <FaClipboardCheck className="inline-block mr-2" /> Task To
+                    Review
                   </NavLink>
                 </li>
               </>

@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 const WorkerDashboard = () => {
   return (
-    <div>
+    <div className="min-h-[calc(100vh-500px)]">
       <h1>worker dashboard</h1>
     </div>
   );

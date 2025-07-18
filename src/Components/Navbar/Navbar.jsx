@@ -107,15 +107,17 @@ const Navbar = () => {
             {user ? (
               <div className="dropdown dropdown-end">
                 <div className=" flex items-center justify-center">
-                  <p className="mx-2">
-                    {" "}
-                    coins:{" "}
-                    <span className="text-blue-500 font-semibold">
-                      {userInfo?.coins ?? 0}{" "}
-                      {/**Nullish Coalescing Operator :  যদি userInfo থাকে এবং তার মধ্যে coins প্রপার্টি থাকে, তাহলে সেটা দেখাও।
+                  {userInfo?.category !== "admin" && (
+                    <p className="mx-2">
+                      {" "}
+                      coins:{" "}
+                      <span className="text-blue-500 font-semibold">
+                        {userInfo?.coins ?? 0}{" "}
+                        {/**Nullish Coalescing Operator :  যদি userInfo থাকে এবং তার মধ্যে coins প্রপার্টি থাকে, তাহলে সেটা দেখাও।
                       আর যদি userInfo না থাকে বা coins না থাকে (মানে null/undefined), তাহলে 0 দেখাও।*/}
-                    </span>
-                  </p>
+                      </span>
+                    </p>
+                  )}
                   <Link>
                     {user?.photoURL ? (
                       <span

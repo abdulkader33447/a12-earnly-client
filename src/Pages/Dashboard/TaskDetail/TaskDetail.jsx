@@ -24,8 +24,8 @@ const TaskDetail = () => {
   if (!task) {
     return <LoadingSpinner />;
   }
-  console.log(task._id);
-  console.log(user.displayName);
+  // console.log(task._id);
+  // console.log(user.displayName);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,7 +42,7 @@ const TaskDetail = () => {
       submission_date: new Date().toLocaleString(),
       status: "pending",
     };
-    console.log(submitData);
+    // console.log(submitData);
 
     try {
       const res = await axiosSecure.post("/submissions", submitData);
@@ -60,10 +60,12 @@ const TaskDetail = () => {
     }
   };
   return (
-    <div>
+    <div className="min-h-[calc(100vh-500px)]">
       <div className="space-y-2">
         {task?.delivered ? (
-          <div className="badge badge-outline p-5 badge-warning my-3 font-bold text-2xl">Delivered</div>
+          <div className="badge badge-outline p-5 badge-warning my-3 font-bold text-2xl">
+            Delivered
+          </div>
         ) : (
           <></>
         )}
@@ -113,10 +115,13 @@ const TaskDetail = () => {
               required
             />
             <button
-              className="btn bg-[#fca61b] hover:bg-[#f7a20a] border-none text-white mt-4 hover:shadow-[_0_0_15px_#fca61b] w-full"
+              disabled={task?.delivered}
+              className="btn w-full mt-4 text-white border-none 
+    bg-[#fca61b] hover:bg-[#f7a20a] hover:shadow-[_0_0_15px_#fca61b] 
+    disabled:bg-[#d48c1a] disabled:cursor-not-allowed disabled:shadow-none"
               type="submit"
             >
-              Subimt Task
+              {task?.delivered ? "Task Already Submitted" : "Subimt Task"}
             </button>
           </form>
         </div>

@@ -24,7 +24,7 @@ const PaymentHistory = () => {
   }, [user, axiosSecure]);
 
   return (
-    <div>
+    <div className="min-h-[calc(100vh-500px)]">
       <h1 className="text-xl sm:text-3xl text-center font-bold my-5">
         Payment History
       </h1>
@@ -68,7 +68,7 @@ const PaymentHistory = () => {
                     <td>${payment.amount}</td>
                     <td>{payment.paymentMethod}</td>
                     <td>{payment.transactionId || "N/A"}</td>
-                    <td>{new Date().toLocaleString()}</td>
+                    <td>{payment.paidAt}</td>
                   </tr>
                 ))}
               </tbody>

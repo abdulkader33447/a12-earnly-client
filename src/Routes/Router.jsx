@@ -20,6 +20,7 @@ import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
 import ManageTask from "../Pages/Dashboard/ManageTask/ManageTask";
 import AdminRoute from "../Context/PriveteRoutes/AdminRoute";
 import TaskDetail from "../Pages/Dashboard/TaskDetail/TaskDetail";
+import TaskToReview from "../Pages/Dashboard/TaskToReview/TaskToReview";
 
 export const router = createBrowserRouter([
   {
@@ -87,6 +88,14 @@ export const router = createBrowserRouter([
         element: (
           <BuyerRoute>
             <PaymentHistory />
+          </BuyerRoute>
+        ),
+      },
+      {
+        path: "taskToReview",
+        element: (
+          <BuyerRoute>
+            <TaskToReview />
           </BuyerRoute>
         ),
       },

@@ -50,7 +50,7 @@ const PurchaseCoin = () => {
   };
 
   return (
-    <div className="sm:p-4">
+    <div className="sm:p-4 min-h-[calc(100vh-500px)]">
       <h1 className="text-3xl font-bold text-center mb-3">Purchase Coins</h1>
       <p className="text-center mb-10">
         Purchase coins with dummy payment system
