@@ -27,10 +27,10 @@ const AddNewTask = () => {
   const [owrkProf, setWorkProf] = useState("");
 
   const onSubmit = async (data) => {
-    // console.log("form submit", data);
-    const requiredWorkers = parseInt(data.required_workers);
-    const payableAmount = parseFloat(data.payable_amount);
-
+    const requiredWorkers = Number(data.required_workers);
+    data.required_workers = requiredWorkers;
+    const payableAmount = Number(data.payable_amount);
+    data.payable_amount = payableAmount;
     const totalPayable = requiredWorkers * payableAmount;
 
     if (userInfoLoading) {

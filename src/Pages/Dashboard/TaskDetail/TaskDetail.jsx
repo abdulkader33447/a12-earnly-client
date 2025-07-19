@@ -1,33 +1,57 @@
-import { useNavigate, useParams } from "react-router";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import { useEffect, useState } from "react";
-import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
-import useAuth from "../../../Hooks/useAuth";
+import { useParams, useNavigate } from "react-router";
+import { useState } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useAuth from "../../../Hooks/useAuth";
+import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
 
 const TaskDetail = () => {
-  const { user } = useAuth();
   const { id } = useParams();
-  const axiosSecure = useAxiosSecure();
-  const [task, setTask] = useState(null);
-  const [submissionDetails, setSubmissionDetails] = useState("");
-  // console.log(submissionDetails);
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    axiosSecure.get(`/tasks/${id}`).then((res) => {
-      if (res.data.success) {
-        setTask(res.data.task);
+  const [submissionDetails, setSubmissionDetails] = useState("");
+
+  // ✅ Fetch task using React Query
+  const {
+    data: task,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["task", id],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/tasks/${id}`);
+      return res.data.task;
+    },
+    enabled: !!id,
+  });
+
+  // ✅ Handle submission using useMutation
+  const taskSubmitMutation = useMutation({
+    mutationFn: async (submissionData) => {
+      const res = await axiosSecure.post("/submissions", submissionData);
+      if (res.data.insertedId) {
+        await axiosSecure.patch(`/tasks/${submissionData.task_id}/delivered`, {
+          delivered: true,
+        });
       }
-    });
-  }, [id, axiosSecure]);
-  if (!task) {
-    return <LoadingSpinner />;
-  }
-  // console.log(task._id);
-  // console.log(user.displayName);
+      return res.data;
+    },
+    onSuccess: () => {
+      Swal.fire("Success!", "Task submitted successfully!", "success");
+      queryClient.invalidateQueries(["task", id]); // refetch task
+      setSubmissionDetails("");
+      navigate("/dashboard/taskList");
+    },
+    onError: () => {
+      Swal.fire("Error!", "Something went wrong while submitting.", "error");
+    },
+  });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const submitData = {
@@ -42,35 +66,22 @@ const TaskDetail = () => {
       submission_date: new Date().toLocaleString(),
       status: "pending",
     };
-    // console.log(submitData);
 
-    try {
-      const res = await axiosSecure.post("/submissions", submitData);
-
-      if (res.data.insertedId) {
-        await axiosSecure.patch(`/tasks/${task._id}/delivered`, {
-          delivered: true,
-        });
-        Swal.fire("Success!", "Task submitted successfully!", "success");
-        setSubmissionDetails("");
-        navigate("/dashboard/taskList");
-      }
-    } catch (err) {
-      Swal.fire("Error!", "Something went wrong while submitting.", "error");
-    }
+    taskSubmitMutation.mutate(submitData);
   };
+
+  if (isLoading) return <LoadingSpinner />;
+  if (isError) return <p className="text-red-500">Failed to load task.</p>;
+
   return (
     <div className="min-h-[calc(100vh-500px)]">
       <div className="space-y-2">
-        {task?.delivered ? (
+        {task?.delivered && (
           <div className="badge badge-outline p-5 badge-warning my-3 font-bold text-2xl">
             Delivered
           </div>
-        ) : (
-          <></>
         )}
         <h1 className="text-2xl font-bold">{task?.title}</h1>
-
         <p>{task?.description}</p>
         <p>
           Payable: <span className="text-gray-400">{task?.payable_amount}</span>
@@ -80,7 +91,7 @@ const TaskDetail = () => {
           <span className="text-gray-400">{task?.required_workers}</span>
         </p>
         <p>
-          Complition Data:{" "}
+          Completion Date:{" "}
           <span className="text-gray-400">{task?.completion_date}</span>
         </p>
         <p>
@@ -98,11 +109,12 @@ const TaskDetail = () => {
         </p>
         <img
           src={task?.task_image_url}
-          alt="task photo"
-          className="rounded-lg"
+          alt="task"
+          className="rounded-lg max-w-md w-full"
         />
       </div>
-      {/* Submission form here */}
+
+      {/* Submission form */}
       <div className="card bg-base-100 w-full shrink-0 shadow-[_0_0_10px_#fca61b71] my-10">
         <div className="card-body">
           <form onSubmit={handleSubmit}>
@@ -115,13 +127,15 @@ const TaskDetail = () => {
               required
             />
             <button
-              disabled={task?.delivered}
-              className="btn w-full mt-4 text-white border-none 
-    bg-[#fca61b] hover:bg-[#f7a20a] hover:shadow-[_0_0_15px_#fca61b] 
-    disabled:bg-[#d48c1a] disabled:cursor-not-allowed disabled:shadow-none"
+              className="btn w-full mt-4 text-white border-none bg-[#fca61b] hover:bg-[#f7a20a] hover:shadow-[_0_0_15px_#fca61b]"
               type="submit"
+              disabled={task?.delivered || taskSubmitMutation.isPending}
             >
-              {task?.delivered ? "Task Already Submitted" : "Subimt Task"}
+              {task?.delivered
+                ? "Task Already Submitted"
+                : taskSubmitMutation.isPending
+                ? "Submitting..."
+                : "Submit Task"}
             </button>
           </form>
         </div>
