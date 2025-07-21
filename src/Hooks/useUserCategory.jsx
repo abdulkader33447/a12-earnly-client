@@ -16,7 +16,7 @@ const useUserCategory = () => {
     enabled: !!user?.email && !loading,
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `http://localhost:5000/users?email=${user.email}`
+        `/users?email=${user.email}`
       );
       return res?.data?.category || "user";
     },

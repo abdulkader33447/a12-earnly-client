@@ -85,7 +85,7 @@ const LogIn = () => {
       });
 
       navigate(from);
-      console.log(result);
+      // console.log(result);
     } catch (error) {
       console.error(error);
       setLogInError("incorrect email or password");

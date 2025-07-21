@@ -41,7 +41,7 @@ const Withdrawals = () => {
     });
   if (isLoading || isPendingLoading) return <LoadingSpinner />;
   // console.log("user data getting", data?.coins);
-  console.log(pendingWithdrawals);
+  // console.log(pendingWithdrawals);
 
   if (error)
     return <p className="text-red-500 text-center">Failed to load user data</p>;
@@ -51,7 +51,7 @@ const Withdrawals = () => {
   const totalCoin = parseInt(data?.coins) || 0;
   // const withdrawableDollar = totalCoin / 20;
   // const withdrawAmount = coinToWithdraw / 20;
-  console.log(totalCoin);
+  // console.log(totalCoin);
 
   //Total coins in pending withdrawal
   const pendingCoins = pendingWithdrawals.reduce(

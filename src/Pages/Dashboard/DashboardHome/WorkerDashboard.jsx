@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
+import { FaClipboardList, FaHourglassHalf } from "react-icons/fa";
+import { BsCoin } from "react-icons/bs";
 
 const WorkerDashboard = () => {
   const { user } = useAuth();
@@ -44,24 +46,29 @@ const WorkerDashboard = () => {
 
   return (
     <div className="min-h-[calc(100vh-500px)]">
-      <h1>worker dashboard</h1>
+      <h1 className="text-lg">worker dashboard</h1>
       {loading ? (
         <LoadingSpinner />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-gradient-to-bl from-blue-50 to-yellow-50 shadow rounded-xl p-5 text-center hover:shadow-xl transition duration-300">
+            <div className="flex justify-center">
+              <FaClipboardList className="text-blue-600 size-10" />
+            </div>
             <h2 className="text-lg font-bold">Total Submissions</h2>
             <p className="text-2xl text-blue-600">{summary.totalSubmissions}</p>
           </div>
           <div className="bg-gradient-to-bl from-blue-50 to-yellow-50 shadow rounded-xl p-5 text-center hover:shadow-xl transition duration-300">
+            <div  className="flex justify-center"><FaHourglassHalf className="text-yellow-600 size-10"/></div>
             <h2 className="text-lg font-bold">Pending Submissions</h2>
             <p className="text-2xl text-yellow-600">
               {summary.pendingSubmissions}
             </p>
           </div>
           <div className="bg-gradient-to-bl from-blue-50 to-yellow-50 shadow rounded-xl p-5 text-center hover:shadow-xl transition duration-300">
+            <div className="flex justify-center"><BsCoin className="text-green-600 size-10"/></div>
             <h2 className="text-lg font-bold">Total Earnings</h2>
-            <p className="text-2xl text-green-600">{summary.totalEarnings}🪙</p>
+            <p className="text-2xl text-green-600">{summary.totalEarnings}</p>
           </div>
         </div>
       )}

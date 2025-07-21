@@ -88,7 +88,7 @@ const AddNewTask = () => {
 
   const handleImgUpload = async (e) => {
     const image = e.target.files[0];
-    console.log(image, "image uploaded");
+    // console.log(image, "image uploaded");
     const formData = new FormData();
     formData.append("image", image);
 
