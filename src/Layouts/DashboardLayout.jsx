@@ -7,6 +7,7 @@ import {
   FaHistory,
   FaHome,
   FaListAlt,
+  FaMoneyCheckAlt,
   FaPlus,
   FaTasks,
   FaUsers,
@@ -174,6 +175,14 @@ const DashboardLayout = () => {
                     className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
                   >
                     <FaListAlt className="inline-block mr-2" /> Manage Tasks
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/withdrawRequests"
+                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
+                  >
+                    <FaMoneyCheckAlt className="inline-block mr-2" />Withdraw Requests
                   </NavLink>
                 </li>
               </>

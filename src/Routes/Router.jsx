@@ -21,6 +21,7 @@ import ManageTask from "../Pages/Dashboard/ManageTask/ManageTask";
 import AdminRoute from "../Context/PriveteRoutes/AdminRoute";
 import TaskDetail from "../Pages/Dashboard/TaskDetail/TaskDetail";
 import TaskToReview from "../Pages/Dashboard/TaskToReview/TaskToReview";
+import WithdrawRequests from "../Pages/Dashboard/WithdrawRequests/WithdrawRequests";
 
 export const router = createBrowserRouter([
   {
@@ -150,6 +151,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageTask />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "withdrawRequests",
+        element: (
+          <AdminRoute>
+            <WithdrawRequests />
           </AdminRoute>
         ),
       },

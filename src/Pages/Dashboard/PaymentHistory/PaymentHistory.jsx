@@ -48,7 +48,7 @@ const PaymentHistory = () => {
         </div>
       ) : (
         <div className="overflow-x-auto bg-gradient-to-bl from-blue-100 to-green-100 rounded-xl shadow-md">
-          <div className="max-h-[450px] overflow-y-auto">
+          <div className="overflow-x-auto max-h-[450px]">
             <table className="table w-full text-xs sm:text-sm md:text-base">
               <thead className="bg-gray-300 text-gray-700">
                 <tr>

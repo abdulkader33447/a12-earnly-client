@@ -171,7 +171,7 @@ const MyTasks = () => {
           </div>
         </>
       ) : (
-        <div className="overflow-x-auto bg-gradient-to-bl from-blue-100 to-green-100 rounded-xl">
+        <div className="overflow-x-auto max-h-[450px] bg-gradient-to-bl from-blue-100 to-green-100 rounded-xl">
           <table className="table w-full">
             <thead className="bg-gray-200">
               <tr className="">

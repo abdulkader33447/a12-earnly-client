@@ -24,19 +24,19 @@ const BuyerDashboard = () => {
     <div className="min-h-[calc(100vh-500px)]">
       <h1>buyer dashboard</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-        <div className="bg-white shadow-md rounded-lg p-6 text-center">
+        <div className="bg-gradient-to-br from-blue-50 via-yellow-50 to-green-50 shadow-md rounded-lg p-6 text-center hover:shadow-2xl  transition duration-300">
           <h2 className="text-xl font-semibold mb-2">Total Tasks</h2>
           <p className="text-3xl font-bold text-blue-600">
             {stats.totalTaskCount || 0}
           </p>
         </div>
-        <div className="bg-white shadow-md rounded-lg p-6 text-center">
+        <div className="bg-gradient-to-br from-blue-50 via-yellow-50 to-green-50 shadow-md rounded-lg p-6 text-center hover:shadow-2xl  transition duration-300">
           <h2 className="text-xl font-semibold mb-2">Pending Workers</h2>
           <p className="text-3xl font-bold text-orange-500">
             {stats.pendingWorkerCount || 0}
           </p>
         </div>
-        <div className="bg-white shadow-md rounded-lg p-6 text-center">
+        <div className="bg-gradient-to-br from-blue-50 via-yellow-50 to-green-50 shadow-md rounded-lg p-6 text-center hover:shadow-2xl  transition duration-300">
           <h2 className="text-xl font-semibold mb-2">Total Payment</h2>
           <p className="text-3xl font-bold text-green-600">
             ${stats.totalPayment?.toFixed(2) || "0.00"}
