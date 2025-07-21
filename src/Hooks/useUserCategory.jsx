@@ -16,7 +16,7 @@ const useUserCategory = () => {
     enabled: !!user?.email && !loading,
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/users?email=${user.email}`
+        `https://earnly-server-mocha.vercel.app/users?email=${user.email}`
       );
       return res?.data?.category || "user";
     },
