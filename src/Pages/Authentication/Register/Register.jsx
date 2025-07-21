@@ -97,7 +97,7 @@ const Register = () => {
               <select
                 defaultValue=""
                 {...register("category", { required: true })}
-                className="p-[10px] border border-gray-300 rounded-sm"
+                className="p-[10px] border border-gray-300 rounded-sm w-full"
               >
                 <option value="" disabled>
                   Select

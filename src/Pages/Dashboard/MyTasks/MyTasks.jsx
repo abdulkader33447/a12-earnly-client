@@ -191,10 +191,10 @@ const MyTasks = () => {
                   <td>{task.completion_date}</td>
                   <td className="space-x-2 space-y-2">
                     <button onClick={() => handleUpdate(task)}>
-                      <FiEdit className="inline-block mr-2 cursor-pointer size-5 text-blue-600 hover:size-6" />
+                      <FiEdit className="inline-block mr-2 cursor-pointer size-5 text-blue-600 " />
                     </button>
                     <button onClick={() => handleDelete(task._id)}>
-                      <MdDeleteOutline className="inline-block mr-2 text-red-600 size-6 cursor-pointer hover:size-7" />
+                      <MdDeleteOutline className="inline-block mr-2 text-red-600 size-6 cursor-pointer " />
                     </button>
                   </td>
                 </tr>

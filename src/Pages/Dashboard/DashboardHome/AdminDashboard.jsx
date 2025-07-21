@@ -25,7 +25,7 @@ const AdminDashboard = () => {
   });
   const totalPayment = payments.length;
 
-  console.log(payments);
+  // console.log(payments);
 
   if (isLoading) return <LoadingSpinner />;
   // console.log("Worker:", data?.totalWorker);

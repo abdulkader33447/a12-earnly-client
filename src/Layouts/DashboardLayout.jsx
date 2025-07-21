@@ -15,11 +15,18 @@ import {
 } from "react-icons/fa";
 import useUserCategory from "../Hooks/useUserCategory";
 import DashboardNavbar from "../Components/DashboardNavbar/DashboardNavbar";
+import LoadingSpinner from "../Pages/LoadingSpinner/LoadingSpinner";
 
 const DashboardLayout = () => {
   const { category, categoryLoading } = useUserCategory();
   // console.log("user category is:",category)
 
+  if (categoryLoading) return <LoadingSpinner />;
+
+  const navLinkClass = ({ isActive }) =>
+    isActive
+      ? "bg-[#fca61b] shadow-[0_0_15px_#fca61b] text-white rounded-lg"
+      : "hover:bg-[#fca61b] hover:text-white rounded-lg hover:shadow-[0_0_15px_#fca61b] transition duration-700";
   return (
     <div>
       <DashboardNavbar />
@@ -62,20 +69,17 @@ const DashboardLayout = () => {
             <li>
               <NavLink
                 to="/dashboard"
-                className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
+                className="hover:bg-[#fca61b] hover:shadow-[0_0_15px_#fca61b] hover:rounded-lg hover:text-white transition duration-700"
               >
                 <FaHome className="inline-block mr-2" /> Home
               </NavLink>
             </li>
 
             {/*-------------- worker links --------------*/}
-            {!categoryLoading && category === "worker" && (
+            { category === "worker" && (
               <>
                 <li>
-                  <NavLink
-                    to="/dashboard/taskList"
-                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
-                  >
+                  <NavLink to="/dashboard/taskList" className={navLinkClass}>
                     <FaTasks className="inline-block mr-2" /> Task List
                   </NavLink>
                 </li>
@@ -83,7 +87,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/mySubmissions"
-                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
+                    className={navLinkClass}
                   >
                     <FaCheckCircle className="inline-block mr-2" /> My
                     Submissions
@@ -92,10 +96,7 @@ const DashboardLayout = () => {
 
                 {/* Withdrawals */}
                 <li>
-                  <NavLink
-                    to="/dashboard/withdrawals"
-                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
-                  >
+                  <NavLink to="/dashboard/withdrawals" className={navLinkClass}>
                     <FaWallet className="inline-block mr-2" /> Withdrawals
                   </NavLink>
                 </li>
@@ -103,24 +104,18 @@ const DashboardLayout = () => {
             )}
 
             {/*---------buyer links-------------  */}
-            {!categoryLoading && category === "buyer" && (
+            {category === "buyer" && (
               <>
                 {" "}
                 {/* Add New Tasks */}
                 <li>
-                  <NavLink
-                    to="/dashboard/addNewTask"
-                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
-                  >
+                  <NavLink to="/dashboard/addNewTask" className={navLinkClass}>
                     <FaPlus className="inline-block mr-2" /> Add New Task
                   </NavLink>
                 </li>
                 {/* My Tasks */}
                 <li>
-                  <NavLink
-                    to="/dashboard/myTasks"
-                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
-                  >
+                  <NavLink to="/dashboard/myTasks" className={navLinkClass}>
                     <FaTasks className="inline-block mr-2" /> My Tasks
                   </NavLink>
                 </li>
@@ -128,7 +123,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/purchaseCoin"
-                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
+                    className={navLinkClass}
                   >
                     <FaCoins className="inline-block mr-2" /> Purchase Coin
                   </NavLink>
@@ -137,7 +132,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/paymentHistory"
-                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
+                    className={navLinkClass}
                   >
                     <FaHistory className="inline-block mr-2" /> Payment History
                   </NavLink>
@@ -146,7 +141,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/taskToReview"
-                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b] rounded px-3 py-2 flex items-center"
+                    className={navLinkClass}
                   >
                     <FaClipboardCheck className="inline-block mr-2" /> Task To
                     Review
@@ -156,33 +151,28 @@ const DashboardLayout = () => {
             )}
 
             {/* --------admin links------- */}
-            {!categoryLoading && category === "admin" && (
+            {category === "admin" && (
               <>
                 {/* Manage Users */}
                 <li>
-                  <NavLink
-                    to="/dashboard/manageUsers"
-                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
-                  >
+                  <NavLink to="/dashboard/manageUsers" className={navLinkClass}>
                     <FaUsers className="inline-block mr-2" /> Manage Users
                   </NavLink>
                 </li>
 
                 {/* Manage Tasks */}
                 <li>
-                  <NavLink
-                    to="/dashboard/manageTasks"
-                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
-                  >
+                  <NavLink to="/dashboard/manageTasks" className={navLinkClass}>
                     <FaListAlt className="inline-block mr-2" /> Manage Tasks
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
                     to="/dashboard/withdrawRequests"
-                    className="hover:bg-[#fca61b5d] hover:shadow-[0_0_20px_#fca61b]"
+                    className={navLinkClass}
                   >
-                    <FaMoneyCheckAlt className="inline-block mr-2" />Withdraw Requests
+                    <FaMoneyCheckAlt className="inline-block mr-2" />
+                    Withdraw Requests
                   </NavLink>
                 </li>
               </>

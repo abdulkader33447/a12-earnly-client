@@ -35,10 +35,11 @@ const MySubmissions = () => {
         </h2>
         {approved.length > 0 ? (
           <>
-            <div className="overflow-x-auto max-h-[450px]">
+            <div className="overflow-x-auto bg-gradient-to-bl from-blue-100 to-green-100 rounded-xl shadow-md">
+              <div className="overflow-x-auto max-h-[450px]">
               <table className="table w-full">
                 <thead>
-                  <tr className="bg-gray-100">
+                  <tr className="bg-gray-200">
                     <th>#</th>
                     <th>Task Title</th>
                     <th>Payable Amount</th>
@@ -62,6 +63,7 @@ const MySubmissions = () => {
                   ))}
                 </tbody>
               </table>
+            </div>
             </div>
           </>
         ) : (

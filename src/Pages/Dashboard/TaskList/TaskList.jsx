@@ -66,7 +66,7 @@ const TaskList = () => {
           {tasks.map((task) => (
             <div
               key={task._id}
-              className="border border-gray-200 bg-gradient-to-br from-yellow-50 to-blue-50 rounded-2xl p-4 shadow hover:shadow-[_0_0_20px_#fca61b4b] transition"
+              className="border border-gray-200 bg-gradient-to-br from-yellow-50 to-blue-50 rounded-2xl p-4 shadow hover:shadow-[_0_0_28px_#fca61b4b] transition duration-400"
             >
               {task?.delivered && (
                 <div className="flex justify-between">
