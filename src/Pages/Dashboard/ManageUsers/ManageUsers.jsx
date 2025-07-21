@@ -51,7 +51,7 @@ const ManageUsers = () => {
   };
   return (
     <div className="min-h-[calc(100vh-500px)]">
-      <h1>ManageUsers</h1>
+      <h1 className="text-center lg:text-5xl md:text-3xl text-2xl font-semibold text-gray-800 mb-10">ManageUsers</h1>
 
       {/* modal */}
       {isModalOpen && selectedUserr && (

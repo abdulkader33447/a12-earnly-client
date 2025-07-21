@@ -121,7 +121,7 @@ const Navbar = () => {
                   <Link>
                     {user?.photoURL ? (
                       <span
-                        className="tooltip tooltip-bottom"
+                        className="tooltip tooltip-bottom tooltip-warning"
                         data-tip={user?.displayName}
                       >
                         <img

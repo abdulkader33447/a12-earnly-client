@@ -183,6 +183,7 @@ const Withdrawals = () => {
             disabled={
               coinToWithdraw < 20 ||
               coinToWithdraw > availableCoins ||
+              isSubmitting ||
               !paymentSystem ||
               !accountNumber
             }

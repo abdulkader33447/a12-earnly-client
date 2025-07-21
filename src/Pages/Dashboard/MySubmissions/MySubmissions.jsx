@@ -28,7 +28,7 @@ const MySubmissions = () => {
 
   return (
     <div className="min-h-[calc(100vh-500px)]">
-      <h1>MySubmissions</h1>
+      <h1 className="text-center lg:text-5xl md:text-3xl text-2xl font-semibold text-gray-800 mb-10">MySubmissions</h1>
       <div className="p-4">
         <h2 className="text-xl font-semibold mb-4">
           Approved Submissions ({approved.length})

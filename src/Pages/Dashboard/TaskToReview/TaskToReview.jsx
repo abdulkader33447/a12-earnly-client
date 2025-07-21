@@ -69,7 +69,7 @@ const TaskToReview = () => {
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-4">Pending Submissions</h2>
+      <h2 className="text-center lg:text-5xl md:text-3xl text-2xl font-semibold text-gray-800 mb-10">Pending Submissions</h2>
       <div className="overflow-x-auto">
         <table className="table">
           <thead>

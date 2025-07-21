@@ -49,17 +49,17 @@ const WorkerDashboard = () => {
         <LoadingSpinner />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-white shadow-md rounded-xl p-5 text-center">
+          <div className="bg-gradient-to-bl from-blue-50 to-yellow-50 shadow rounded-xl p-5 text-center hover:shadow-xl transition duration-300">
             <h2 className="text-lg font-bold">Total Submissions</h2>
             <p className="text-2xl text-blue-600">{summary.totalSubmissions}</p>
           </div>
-          <div className="bg-white shadow-md rounded-xl p-5 text-center">
+          <div className="bg-gradient-to-bl from-blue-50 to-yellow-50 shadow rounded-xl p-5 text-center hover:shadow-xl transition duration-300">
             <h2 className="text-lg font-bold">Pending Submissions</h2>
             <p className="text-2xl text-yellow-600">
               {summary.pendingSubmissions}
             </p>
           </div>
-          <div className="bg-white shadow-md rounded-xl p-5 text-center">
+          <div className="bg-gradient-to-bl from-blue-50 to-yellow-50 shadow rounded-xl p-5 text-center hover:shadow-xl transition duration-300">
             <h2 className="text-lg font-bold">Total Earnings</h2>
             <p className="text-2xl text-green-600">{summary.totalEarnings}🪙</p>
           </div>
