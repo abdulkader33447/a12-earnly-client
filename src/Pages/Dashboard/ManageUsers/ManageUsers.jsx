@@ -158,7 +158,7 @@ const ManageUsers = () => {
                     </td>
                     <td>{userr.category}</td>
                     <td>{userr.coins}</td>
-                    <td>
+                    <td className="flex sm:flex-row flex-col gap-5">
                       <button onClick={() => handleUpdateUserRole(userr)} disabled={userr?.email === user?.email || userr?.category ==="admin"}>
                         <FiEdit className={`${userr.email === user.email || userr?.category ==="admin"?"cursor-not-allowed inline-block size-5 mr-2 text-blue-600":"cursor-pointer inline-block size-5 mr-2 text-blue-600"}`} />
                       </button>
