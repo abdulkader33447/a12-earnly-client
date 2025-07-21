@@ -189,7 +189,7 @@ const MyTasks = () => {
                   <td>{task.title}</td>
                   <td>{task.submission_info}</td>
                   <td>{task.completion_date}</td>
-                  <td className="space-x-2 space-y-2">
+                  <td className="space-x-2 space-y-5">
                     <button onClick={() => handleUpdate(task)}>
                       <FiEdit className="inline-block mr-2 cursor-pointer size-5 text-blue-600 " />
                     </button>
