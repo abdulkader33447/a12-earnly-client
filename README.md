@@ -48,7 +48,7 @@ Password: `Admin123` -->
 ---
 
 ## 🖼️ Screenshots
-![Earnly Home Page](./screenshots/dashboard.png)
+![Earnly Home Page](https://github.com/abdulkader33447/a12-earnly-client/blob/27fb20a99f0e5c6ebb8624298a682476b15e5c9b/earnly-1f981.web.app_.png)
 
 <!-- > Add some clean screenshots of:
 - Home page
