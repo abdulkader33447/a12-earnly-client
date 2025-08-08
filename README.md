@@ -39,7 +39,7 @@ Password: `Admin123` -->
 
 ### Backend
 - Express.js
-- MongoDB + Mongoose
+- MongoDB
 <!-- - Firebase Admin SDK (JWT Verification) -->
 <!-- - Stripe Payment Integration -->
 - dotenv for environment variables
