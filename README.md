@@ -1,12 +1,61 @@
-# React + Vite
+# 🚀 Earnly – Micro Tasking and Earning Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Earnly is a full-featured micro-task and earning platform built with the MERN stack. It enables **workers** to earn coins by completing small tasks and allows **buyers** to create and manage paid tasks. An **admin panel** ensures smooth moderation of the system.
 
-Currently, two official plugins are available:
+Live Website: [Click Here to Visit](https://earnly-1f981.web.app/)  
+  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<!-- 🛂 **Admin Login**  
+Email: `admin@earnly.com`  
+Password: `Admin123` -->
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🌟 Core Features
+
+- 🔐 **Secure User Authentication** (Email/password + Google Sign-In)
+- 👥 **Role-Based Dashboard**: Worker, Buyer, Admin
+- 🧾 **Task Management**: Add, update, delete, and review tasks
+- ✅ **Submission System**: Workers submit proof, buyers approve/reject
+- 💰 **Coin-Based Economy**: Coin earned for each approved task
+- 💳 **Dummy Payment Integration** for purchasing coins (or fallback demo payment)
+- 🏧 **Withdrawals**: Workers can request withdrawals after earning coins
+<!-- - 🔔 **Real-time Notifications** for approvals, rejections, and submissions -->
+- 📷 **Image Uploads** via imgBB (profile + task images)
+- 📱 **Fully Responsive** for mobile, tablet, and desktop
+<!-- - 🔐 **JWT + Role-Based Protected Routes** with 401, 403, and 400 error handling -->
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend
+- React
+- React Router 
+- Tailwind CSS + DaisyUI
+- Firebase Authentication
+- SwiperJS / React Carousel
+- Axios + React Query
+
+### Backend
+- Express.js
+- MongoDB + Mongoose
+<!-- - Firebase Admin SDK (JWT Verification) -->
+<!-- - Stripe Payment Integration -->
+- dotenv for environment variables
+- CORS, Helmet, etc.
+
+---
+
+## 🖼️ Screenshots
+![Earnly Home Page](./screenshots/dashboard.png)
+
+<!-- > Add some clean screenshots of:
+- Home page
+- Dashboard (Worker/Buyer/Admin)
+- Task Details
+- Submission Modal
+- Withdrawal form  
+📷 Example:
+```md
+![Earnly Dashboard](./screenshots/dashboard.png) -->
